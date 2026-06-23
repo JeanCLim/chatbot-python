@@ -1,29 +1,13 @@
-def resposta():
-    resp = input('>: ')
-    resp = resp.lower()
-    resp = resp.replace('é','eh')
-    return resp
+from funções import *
 
 print('Olá, qual o seu nome?')
-
-if 'o meu nome eh ' in nome:
-    nome = nome[14:]
-
-resp = resp.title()
-
-conhecidos = ['Raimundo','Will','Joao']
-
-frase = 'Muito prazer '
-if conhecidos in conhecidos:
-    frase = 'Eaew '
-else:
-    frase = 'Muito prazer '
-
-print(frase+nome)
+nome = pegaOnome(resposta())
+resp = respondeNome(nome)
+print(resp)
 
 while True:
-    resp = input('>: ')
-    if resposta == 'tchau':
+    resp = resposta()
+    if resp == 'tchau':
         break
     else:
         print('Digite outra coisa')
