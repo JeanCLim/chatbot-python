@@ -1,7 +1,11 @@
+import json
+
 class Chatbot():
     def __init__(self, nome):
+        memoria = open(nome+'.json','r')
         self.nome = nome
-        self.conhecidos = ['Will','João']
+        self.conhecidos = json.load(memoria)
+        memoria.close()
         self.historico = []
 
     def escuta(self):
@@ -14,6 +18,8 @@ class Chatbot():
     def pensa(self, frase):
         if frase == ('oi'):
             return 'Olá, qual seu nome?'
+        if frase == ('tchau'):
+            return 'tchau'
         if self.historico[-1] == 'Olá, qual seu nome?':
             nome = self.pegaNome(frase)
             resp = self.respondeNome(nome)
@@ -32,6 +38,10 @@ class Chatbot():
             frase = 'Eaew '
         else:
             frase = 'Muito prazer '
+            self.conhecidos.append(nome)
+            memoria = open(self.nome+'.json', 'w')
+            json.dump(self.conhecidos,memoria)
+            memoria.close()
 
         return frase+nome
 
